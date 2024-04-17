@@ -2,25 +2,22 @@ import java.io.*;
 import java.util.*;
 public class boj2644_bfs {
     static int n, a, b, m;
-    static int answer;
     static boolean graph[][];
-    static boolean visited[];
+    static int visited[];
     static ArrayList<Integer> queue;
 
     public static void bfs(){
         queue = new ArrayList<>();
         queue.add(a);
-        visited[a] = true;
 
         while (!queue.isEmpty()){
             int idx = queue.remove(0);
-            for (int i=1; i<=m; i++){
-                if (graph[idx][i] && !visited[i]){
+            for (int i=1; i<=n; i++){
+                if (graph[idx][i] && visited[i] == 0){
                     queue.add(i);
-                    visited[i] = true;
+                    visited[i] = visited[idx] + 1;
                 }
             }
-            answer ++;
         }
     }
     public static void main(String[] args) throws Exception{
@@ -29,7 +26,7 @@ public class boj2644_bfs {
 
         n = Integer.parseInt(br.readLine());
         graph = new boolean[n+1][n+1];
-        visited = new boolean[n+1];
+        visited = new int[n+1];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         a = Integer.parseInt(st.nextToken());
@@ -48,7 +45,10 @@ public class boj2644_bfs {
 
         bfs();
 
-        bw.write(String.valueOf(answer));
+        if (visited[b] == 0)
+            System.out.println(-1);
+        else
+            bw.write(String.valueOf(visited[b]));
 
         br.close();
         bw.close();
