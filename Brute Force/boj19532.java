@@ -11,9 +11,11 @@ public class boj19532 {
         for (int i=0; i<6; i++)
             input[i] = Integer.parseInt(st.nextToken());
 
-        for (int x=-999; x<=999; x++){
+        // 연립방정식 모두 대입
+
+        for (int x=-999; x<=999; x++){ // x와 y -999~999
             for (int y=-999; y<=999; y++){
-                if (input[0] * x + input[1] * y == input[2]) {
+                if (input[0] * x + input[1] * y == input[2]) { // 하나하나 다 계산해보기...
                     if (input[3] * x + input[4] * y == input[5]){
                         System.out.println(x + " " + y);
                         break;
