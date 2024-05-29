@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/BFS" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BackTracking" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Brute Force" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Implementation" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
