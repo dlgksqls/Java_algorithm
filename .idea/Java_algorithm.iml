@@ -9,6 +9,8 @@
       <sourceFolder url="file://$MODULE_DIR$/BackTracking" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Brute Force" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Implementation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DOIT" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DataStructure" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
