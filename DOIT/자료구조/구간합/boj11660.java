@@ -32,11 +32,29 @@ public class boj11660 {
         int [][] array = new int[n+1][n+1];
         int [][] sum = new int[n+1][n+1];
 
-        for (int i=1; i<n+1; i++){
+        for (int i=1; i<n+1; i++){ // 원본 배열
             st = new StringTokenizer(br.readLine());
             for (int j=1; j<n+1; j++){
                 array[i][j] = Integer.parseInt(st.nextToken());
             }
+        }
+
+        for (int i=1; i<n+1; i++){ // 합 배열
+            for (int j=1; j<n+1; j++){
+                sum[i][j] = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1] + array[i][j]; // 합 배열 공식인데,, 내가 문제 이해를 못해서,,,,
+            }
+        }
+
+        for (int i=0; i<m; i++){
+            st = new StringTokenizer(br.readLine());
+
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            int result = sum[x2][y2] - sum[x1-1][y2] - sum[x2][y1-1] + sum[x1-1][y1-1]; // 결과
+            System.out.println(result);
         }
     }
 }
