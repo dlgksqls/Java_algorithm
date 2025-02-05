@@ -35,5 +35,6 @@ public class boj11659_Scanner사용 {
             int y = sc.nextInt();
             System.out.println(sum[y] - sum[x-1]);
         }
+        sc.close();
     }
 }

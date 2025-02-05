@@ -35,5 +35,6 @@ public class boj1546 {
         }
 
         System.out.println(answer/n);
+        sc.close();
     }
 }

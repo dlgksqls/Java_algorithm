@@ -41,5 +41,6 @@ public class boj2018 {
             }
         }
         System.out.println(result);
+        br.close();
     }
 }

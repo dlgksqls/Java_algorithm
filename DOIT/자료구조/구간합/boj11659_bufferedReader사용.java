@@ -48,5 +48,6 @@ public class boj11659_bufferedReader사용 {
             int y = Integer.parseInt(st.nextToken());
             System.out.println(sum[y] - sum[x-1]);
         }
+        br.close();
     }
 }

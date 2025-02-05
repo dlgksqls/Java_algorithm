@@ -19,5 +19,6 @@ public class boj11720 {
             // 그래서 48에 해당하는 '0'을 빼주는 것임
         }
         System.out.println(answer);
+        sc.close();
     }
 }

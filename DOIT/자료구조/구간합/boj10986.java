@@ -50,5 +50,6 @@ public class boj10986 {
             }
         }
         System.out.println(result);
+        br.close();
     }
 }

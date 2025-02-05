@@ -56,5 +56,6 @@ public class boj11660 {
             int result = sum[x2][y2] - sum[x1-1][y2] - sum[x2][y1-1] + sum[x1-1][y1-1]; // 결과
             System.out.println(result);
         }
+        br.close();
     }
 }
