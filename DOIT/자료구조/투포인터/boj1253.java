@@ -40,7 +40,7 @@ public class boj1253 {
         long sum;
         int answer = 0;
 
-        for (int i=0; i<n; i++){
+        for (int i=0; i<n; i++){ // 음수가 있을 수 있으므로,,, 조사할 수를 하나 정하되,, 포인터는 처음과 끝에 하나씩 찍어서 순차적으로 조사해야함
             choose = array[i];
 
             start_index = 0;

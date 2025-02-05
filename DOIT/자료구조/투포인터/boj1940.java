@@ -17,6 +17,7 @@ public class boj1940 {
      * 첫째 줄에는 재료의 개수 N(1 ≤ N ≤ 15,000)이 주어진다. 그리고 두 번째 줄에는 갑옷을 만드는데 필요한 수 M(1 ≤ M ≤ 10,000,000) 주어진다.
      * 그리고 마지막으로 셋째 줄에는 N개의 재료들이 가진 고유한 번호들이 공백을 사이에 두고 주어진다. 고유한 번호는 100,000보다 작거나 같은 자연수이다.
      *
+     * 15000이니,, O(nlog(n))으로 해야함
      * 입력
      * 6
      * 9
@@ -43,10 +44,10 @@ public class boj1940 {
             array[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(array);
+        Arrays.sort(array); // 정렬해야함 Java의 정렬알고리즘은 퀵 소트 : O(nlog(n)
         sum = array[start_index] + array[end_index];
 
-        while (start_index < end_index){
+        while (start_index < end_index){ // 정렬해서 포인터를 처음과 끝에 찍어서 조사
             if (sum == m){
                 answer ++;
                 start_index ++;
