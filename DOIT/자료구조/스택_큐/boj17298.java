@@ -1,8 +1,6 @@
 package 자료구조.스택_큐;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
@@ -24,15 +22,10 @@ public class boj17298 {
         myStack.push(0);
 
         for (int i=1; i<n; i++){
-            while(array[myStack.push()]){
-                if (array[myStack.peek()] > array[i]){
-                    myStack.push(array[i]);
-                    break;
-                }
-                output = myStack.pop();
-                myStack.push(i);
-                answer[output] = array[i];
+            while (!myStack.isEmpty() && array[myStack.peek()] < array[i]){
+                answer[myStack.pop()] = array[i];
             }
+            myStack.push(i);
         }
 
         while (!myStack.isEmpty()){
@@ -40,8 +33,17 @@ public class boj17298 {
             answer[output] = -1;
         }
 
-        for (int i : answer) {
-            System.out.println(i);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        for (int i=0; i<n; i++){
+            bw.write(answer[i] + " ");
         }
+
+//        for (int i : answer) {
+//            System.out.print(i + " ");
+//        }
+
+        bw.write("\n");
+        bw.flush();
+        br.close();
     }
 }
