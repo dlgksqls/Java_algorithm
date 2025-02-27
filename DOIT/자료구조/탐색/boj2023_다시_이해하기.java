@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class boj2023_문제_이해하기 {
+public class boj2023_다시_이해하기 {
 
     static int n;
 
