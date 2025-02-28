@@ -1,4 +1,4 @@
-package 자료구조.정렬;
+package 정렬;
 
 import java.io.BufferedReader;
 import java.io.IOException;

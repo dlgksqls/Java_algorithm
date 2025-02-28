@@ -1,4 +1,4 @@
-package 자료구조.탐색;
+package 탐색;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,28 +6,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-/**
- * 문제 이해 잘 하기,,,
- */
-public class boj13023 {
+public class boj11724 {
 
-    static int n;
-    static int m;
-    static int count=0;
     static ArrayList<Integer>[] graph;
     static boolean[] visited;
-    static boolean arrive;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-        graph = new ArrayList[n];
-        visited = new boolean[n];
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-        for (int i=0; i<n; i++){
+        graph = new ArrayList[n+1];
+        visited = new boolean[n+1];
+
+        for(int i=0; i<n+1; i++){
             graph[i] = new ArrayList<Integer>();
         }
 
@@ -39,29 +33,26 @@ public class boj13023 {
             graph[b].add(a);
         }
 
-        for (int i=0; i<n; i++){
-            dfs(i, 1);
-
-            if (arrive){
-                System.out.println(1);
-                return;
+        int count = 0;
+        for (int i=1; i<n+1; i++){
+            if (!visited[i]){
+                count ++;
+                dfs(i);
             }
         }
-        System.out.println(0);
+        System.out.println(count);
+        br.close();
     }
 
-    private static void dfs(int v, int depth) {
-        if (depth == 5 || arrive){
-            arrive = true;
+    private static void dfs(int v) {
+        if (visited[v]){
             return;
         }
-
         visited[v] = true;
-        for (int i:graph[v]){
+        for (Integer i : graph[v]) {
             if (!visited[i]){
-                dfs(i, depth+1);
+                dfs(i);
             }
         }
-        visited[v] = false;
     }
 }
