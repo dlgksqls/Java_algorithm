@@ -19,7 +19,7 @@ public class boj2018 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int n = Integer.parseInt(st.nextToken()); // n의 크기가 상당히 크기 때문 (하지만 제한 시간은 2초라서 O(n) 으로 짜야햄
+        int n = Integer.parseInt(st.nextToken()); // n의 크기가 상당히 크기 때문 (하지만 제한 시간은 2초라서 O(n) 으로 짜야함)
         int result = 1;
         int sum = 1;
         int start_index = 1;
