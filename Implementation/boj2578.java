@@ -1,108 +1,78 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class boj2578 {
-    static int count = 0;
-    static int result = 0;
-    static Integer[][] graph = new Integer[5][5];
 
-    public static void main(String[] args) throws Exception{
+    static int[][] array = new int[5][5];
+    static int answer = 0;
+    static int bingo_count = 0;
 
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        // 그래프 채우기
-        for (int i=0; i< graph.length; i++){
-            // 한 줄 통으로 받아와서(띄워쓰기)
+        // 빙고판 입력 받기
+        for (int i = 0; i < 5; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            for(int j=0; j<graph[i].length; j++){
-                // 하나씩 삽입
-                graph[i][j] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < 5; j++) {
+                array[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        for (int k=0; k<5; k++){
-            // 한 줄 통으로 읽어와서
+        // 사회자가 부르는 숫자 처리
+        for (int i = 0; i < 5; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < 5; j++) {
+                answer++;
+                int number = Integer.parseInt(st.nextToken());
 
-            for (int m=0; m<5; m++) {
-                // 하나씩 보기
-                int num = Integer.parseInt(st.nextToken());
-                result ++ ;
+                for (int x = 0; x < 5; x++) {
+                    for (int y = 0; y < 5; y++) {
+                        if (array[x][y] == number) {
+                            array[x][y] = 0;
 
-                for (int i = 0; i < graph.length; i++) {
-                    for (int j = 0; j < graph[i].length; j++) {
-                        if (graph[i][j] == num) {
-                            graph[i][j] = 0;
+                            row_check(x);
+                            col_check(y);
+                            if (x == y) cross_check();
+                            if (x + y == 4)cross_check_reverse();
+
+                            if (bingo_count >= 3) {
+                                System.out.println(answer);
+                                return;
+                            }
                         }
                     }
                 }
-
-                count = 0;
-
-                /**
-                 * 빙고 체크
-                 */
-                // 열 (row)
-                rCheck();
-                // 행 (column)
-                cCheck();
-                // 우측방향 대각선
-                rcCheck();
-                // 좌측방향 대각선
-                lcCheck();
-
-                if (count >= 3){
-                    System.out.println(result);
-                    return;
-                }
             }
         }
     }
-    private static void cCheck() {
-        for (int i=0; i< graph.length; i++){
-            boolean win = true;
-            for (int j=0; j< graph.length; j++){
-                if (graph[j][i] != 0){
-                    win = false;
-                    break;
-                }
-            }
-            if (win) count ++;
+
+    private static void row_check(int row) {
+        for (int i = 0; i < 5; i++) {
+            if (array[row][i] != 0) return;
         }
-    }
-    private static void rCheck() {
-        for (int i=0; i< graph.length; i++){
-            boolean win = true;
-            for (int j=0; j< graph.length; j++){
-                if (graph[i][j] != 0){
-                    win = false;
-                    break;
-                }
-            }
-            if (win) count ++;
-        }
-    }
-    private static void lcCheck() {
-        boolean win = true;
-        for (int i=0; i<graph.length; i++){
-            if(graph[i][i] != 0){
-                win = false;
-                break;
-            }
-        }
-        if (win) count ++;
+        bingo_count++;
     }
 
-    private static void rcCheck() {
-        boolean win = true;
-        for (int i=0; i<graph.length; i++){
-            if(graph[i][graph.length - i - 1] != 0){
-                win = false;
-                break;
-            }
+    private static void col_check(int col) {
+        for (int i = 0; i < 5; i++) {
+            if (array[i][col] != 0) return;
         }
-        if(win) count ++;
+        bingo_count++;
+    }
+
+    private static void cross_check() {
+        for (int i = 0; i < 5; i++) {
+            if (array[i][i] != 0) return;
+        }
+        bingo_count++;
+    }
+
+    private static void cross_check_reverse() {
+        for (int i = 0; i < 5; i++) {
+            if (array[i][4 - i] != 0) return;
+        }
+        bingo_count++;
     }
 }

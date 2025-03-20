@@ -1,4 +1,4 @@
-package 정렬;
+package 정렬.복습.삽입정렬;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,33 +13,24 @@ public class boj11399 {
 
         int n = Integer.parseInt(br.readLine());
         int[] array = new int[n];
+        int [] sum = new int[n];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i=0; i<n; i++){
             array[i] = Integer.parseInt(st.nextToken());
         }
 
-        for (int i=1; i<n; i++){
-            int select = array[i];
-            int j = i-1;
+        Arrays.sort(array);
 
-            while (j >= 0 && select < array[j]){
-                array[j+1] = array[j];
-                j --;
-            }
-
-            array[j+1] = select;
+        sum[0] = array[0];
+        for (int i=1; i<array.length; i++){
+            sum[i] = sum[i-1] + array[i];
         }
 
-        int sum = 0;
         int answer = 0;
-        for (int i : array) {
-            sum += i;
-            answer += sum;
+        for (int i : sum) {
+            answer += i;
         }
-
         System.out.println(answer);
-
-        br.close();
     }
 }
