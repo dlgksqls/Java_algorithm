@@ -1,4 +1,4 @@
-package 탐색;
+package 탐색.DFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
