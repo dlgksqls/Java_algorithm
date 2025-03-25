@@ -1,4 +1,4 @@
-package 탐색;
+package 탐색.BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,14 +8,13 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class boj2178 {
-
     static int n;
     static int m;
     static int[][] graph;
-    static int[][] distance; // 각 노드까지의 거리
     static int[] dx = {1, 0, -1, 0};
     static int[] dy = {0, -1, 0, 1};
-
+    static int[][] distance;
+    static int answer = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -23,39 +22,36 @@ public class boj2178 {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        graph = new int[n + 1][m + 1];
-        distance = new int[n + 1][m + 1];
+        graph = new int[n+1][m+1];
+        distance = new int[n+1][m+1];
 
-        for (int i = 0; i < n; i++) {
-            String line = br.readLine();
-            for (int j = 0; j < m; j++) {
-                graph[i + 1][j + 1] = line.charAt(j) - '0';
+        for (int i=0; i<n; i++){
+            String map = br.readLine();
+            for(int j=0; j<m; j++){
+                graph[i+1][j+1] = map.charAt(j) - '0';
             }
         }
 
         bfs(1, 1);
-
         System.out.println(distance[n][m]);
-
-        br.close();
     }
 
     private static void bfs(int x, int y) {
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[]{x, y});
+
         distance[x][y] = 1;
 
-        while (!queue.isEmpty()) {
-            int[] poll = queue.poll();
+        while (!queue.isEmpty()){
+            int[] now = queue.poll();
+            for (int i=0; i<4; i++){
+                int nx = now[0] + dx[i];
+                int ny = now[1] + dy[i];
 
-            for (int i = 0; i < 4; i++) {
-                int nx = poll[0] + dx[i];
-                int ny = poll[1] + dy[i];
-
-                if (nx > 0 && nx <= n && ny > 0 && ny <= m && graph[nx][ny] == 1) {
-                    if (distance[nx][ny] == 0) {
-                        queue.offer(new int[]{nx, ny});
-                        distance[nx][ny] = distance[poll[0]][poll[1]] + 1;
+                if (nx > 0 && nx <= n && ny > 0 && ny <= m && graph[nx][ny] == 1){
+                    if (distance[nx][ny] == 0){
+                        queue.add(new int[]{nx, ny});
+                        distance[nx][ny] = distance[now[0]][now[1]] + 1;
                     }
                 }
             }
