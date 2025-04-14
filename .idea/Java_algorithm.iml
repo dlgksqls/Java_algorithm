@@ -14,6 +14,7 @@
       <sourceFolder url="file://$MODULE_DIR$/이코테" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/누적합" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Recursion(BT)" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SWEA" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
