@@ -16,6 +16,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Recursion(BT)" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SWEA" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DP(TopDown)" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DP(BottomUp)" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LIS,LCS" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/TwoPointer" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
