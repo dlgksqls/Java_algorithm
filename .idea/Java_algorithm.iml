@@ -20,6 +20,8 @@
       <sourceFolder url="file://$MODULE_DIR$/LIS,LCS" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TwoPointer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BinarySearch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Dijkstra" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tree" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
