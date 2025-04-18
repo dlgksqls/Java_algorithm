@@ -22,6 +22,8 @@
       <sourceFolder url="file://$MODULE_DIR$/BinarySearch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Dijkstra" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Tree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ MST" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UnionFind" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
