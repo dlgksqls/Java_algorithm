@@ -43,7 +43,7 @@ public class boj2053 {
 
     public static void recursion(int hint_idx, int number){
 
-        if (hint_idx == 4){
+        if (hint_idx == n){
             answer ++;
             recursion(0, number+1);
             return;
