@@ -1,1 +1,29 @@
+# Java class files
+*.class
+
+# Build output directories
 out/
+bin/
+build/
+
+# Eclipse project files
+*.classpath
+*.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Mac OS
+.DS_Store
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
