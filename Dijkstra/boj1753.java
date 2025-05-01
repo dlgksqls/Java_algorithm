@@ -41,7 +41,7 @@ public class boj1753 {
             Edge node = queue.poll();
 
             for (Edge edge : graph[node.node]) {
-                if (dist[edge.node] > dist[node.node] + edge.value){
+                if (dist[edge.node] > dist[node.node] + edge.value){ // 이전까지의 최소거리 + 다음 노드까지의 거리
                     dist[edge.node] = dist[node.node] + edge.value;
                     queue.add(new Edge(edge.node, dist[edge.node]));
                 }
