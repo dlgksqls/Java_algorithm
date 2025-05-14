@@ -29,18 +29,29 @@ public class Main {
         } else return number * fac(number - 1);
     }
 
-    private static int[][] solution(int[][] arr1, int[][] arr2) {
-        int[][] answer = new int[arr1.length][arr1[0].length];
+    public int[] solution(int[] progresses, int[] speeds) {
+        int[] answer = {};
+        List<Integer> list = new ArrayList<>();
+        int day = 0;
 
-        for (int i = 0; i < arr1.length; i++) {
-            for (int j = 0; j < arr2[0].length; j++) {
-                int sum = 0;
-                for (int k = 0; k < arr1[0].length; k++) {
-                    sum += arr1[i][k] * arr2[k][j];
+        int count = 0;
+        while(count < speeds.length){
+            for(int i=0; i<speeds.length; i++){
+                if (progresses[i] < 100){
+                    progresses[i] += speeds[i];
                 }
-                answer[i][j] = sum;
+            }
+            int add_count = 0;
+            while(day < speeds.length && progresses[day] >= 100){
+                day ++;
+                add_count ++;
+                count ++;
+            }
+            if (add_count != 0){
+                list.add(add_count);
             }
         }
+        answer = list.stream().mapToInt(Integer::intValue).toArray();
         return answer;
     }
 }
