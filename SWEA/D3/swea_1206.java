@@ -1,46 +1,34 @@
 package D3;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class swea_1206 {
-
     public static void main(String args[]) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int T;
-        T=sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        for(int tc = 1; tc <= T; tc++) {
-            int n = sc.nextInt();
-            int answer = 0;
+        for(int tc = 1; tc <= 10; tc ++){
+            int n = Integer.parseInt(br.readLine());
             int[] array = new int[n];
 
+            st = new StringTokenizer(br.readLine());
             for(int i=0; i<n; i++){
-                array[i] = sc.nextInt();
+                array[i] = Integer.parseInt(st.nextToken());
             }
 
+            int answer = 0;
             for(int i=2; i<n-2; i++){
-                int check = array[i];
-                int r_max = 0;
-                int l_max = 0;
-                int count = 0;
-                int final_max;
+                int lMax = Math.max(array[i-1], array[i-2]);
+                int rMax = Math.max(array[i+1], array[i+2]);
 
-                for(int j=i-1; j>=i-2; j--){
-                    if (check < array[j]) break;
-                    r_max = Math.max(array[j], r_max);
-                    count ++;
-                }
-                for(int j=i+1; j<=i+2; j++){
-                    if (check < array[j]) break;
-                    l_max = Math.max(array[j], l_max);
-                    count ++;
-                }
+                int max = Math.max(lMax, rMax);
 
-                if (count == 4) {
-                    final_max = Math.max(r_max, l_max);
-                    answer += check - final_max;
-                }
+                if (array[i] - max <= 0) continue;
+                answer += array[i] - max;
             }
+
             System.out.println("#" + tc + " " + answer);
         }
     }

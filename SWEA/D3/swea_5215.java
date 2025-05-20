@@ -4,53 +4,49 @@ import java.util.*;
 
 public class swea_5215 {
 
-    static int n;
-    static int l;
-    static ArrayList<Ingre> array;
-    static int answer;
+    static class ingredient{
+        int score;
+        int cal;
 
+        public ingredient(int score, int cal) {
+            this.score = score;
+            this.cal = cal;
+        }
+    }
+    static int answer;
     public static void main(String args[]) throws Exception {
         Scanner sc = new Scanner(System.in);
         int T;
-        T=sc.nextInt();
+        T = sc.nextInt();
 
-        for(int tc = 1; tc <= T; tc++) {
-            answer = Integer.MIN_VALUE;
-            n = sc.nextInt();
-            l = sc.nextInt();
+        for (int tc = 1; tc <= T; tc++) {
+            int n = sc.nextInt();
+            int l = sc.nextInt();
 
-            array = new ArrayList<>();
-
+            ingredient[] array = new ingredient[n];
             for(int i=0; i<n; i++){
-                array.add(new Ingre(sc.nextInt(), sc.nextInt()));
+                array[i] = new ingredient(sc.nextInt(), sc.nextInt());
             }
 
-            recursion(0, 0, 0);
+            answer = Integer.MIN_VALUE;
+            recursion(0, 0, 0, l, array);
 
             System.out.println("#" + tc + " " + answer);
         }
     }
 
-    private static void recursion(int idx, int score, int kal) {
-
-        if (idx == n){
-            answer = Math.max(score, answer);
+    private static void recursion(int idx, int score, int cal, int limit, ingredient[] array) {
+        if (idx == array.length){
+            if (cal <= limit){
+                answer = Math.max(answer, score);
+            }
             return;
         }
 
-        if (kal + array.get(idx).kal <= l) {
-            recursion(idx + 1, score + array.get(idx).score, kal + array.get(idx).kal);
+        if (cal < limit) {
+            recursion(idx + 1, score + array[idx].score, cal + array[idx].cal, limit, array);
         }
-        recursion(idx + 1, score, kal);
-    }
 
-    private static class Ingre {
-        int score;
-        int kal;
-
-        public Ingre(int score, int kal) {
-            this.score = score;
-            this.kal = kal;
-        }
+        recursion(idx + 1, score, cal, limit, array);
     }
 }
