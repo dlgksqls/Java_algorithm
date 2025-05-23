@@ -1,41 +1,39 @@
 package D3;
 
+import java.io.*;
 import java.util.*;
 
 public class swea_1228 {
 
     public static void main(String args[]) throws Exception {
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
         for(int tc = 1; tc <= 2; tc++) {
-            int n = sc.nextInt();
-            sc.nextLine();
-            String pwd = sc.nextLine();
-            String[] pwdArray = pwd.split(" ");
-            List<String> pwdList = new ArrayList<>(Arrays.asList(pwdArray));
+            int n = Integer.parseInt(br.readLine());
+            LinkedList<String> input = new LinkedList<>();
+            st = new StringTokenizer(br.readLine());
+            for(int i=0; i<n; i++){
+                input.add(st.nextToken());
+            }
 
-            int m = sc.nextInt();
-            sc.nextLine();
-            String cmd = sc.nextLine();
-            String[] array = cmd.split("I ");
+            n = Integer.parseInt(br.readLine());
+            String[] order = br.readLine().split(" ");
 
-            for (String current : array) {
-                if (current.trim().isEmpty()) continue;
+            for (int i = 0; i < order.length; i++) {
+                if (order[i].equals("I")) {
+                    int end = Integer.parseInt(order[++i]);
+                    int cnt = Integer.parseInt(order[++i]);
 
-                String[] split = current.split(" ");
-                int x = Integer.parseInt(split[0]);
-                int y = Integer.parseInt(split[1]);
-
-                List<String> toInsert = new ArrayList<>();
-                for(int i = 0; i < y; i++) {
-                    toInsert.add(split[i+2]);
+                    for (int j = 0; j < cnt; j++) {
+                        input.add(end++, order[++i]);
+                    }
                 }
-                pwdList.addAll(x, toInsert);
             }
 
             System.out.print("#" + tc + " ");
             for(int i=0; i<10; i++){
-                System.out.print(pwdList.get(i) + " ");
+                System.out.print(input.get(i) + " ");
             }
             System.out.println();
         }
