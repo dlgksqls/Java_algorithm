@@ -1,41 +1,44 @@
+package BFS;
+
 import java.io.*;
 import java.util.*;
-public class boj2644_bfs {
-    static int n, a, b, m;
+public class boj2606_bfs {
     static boolean graph[][];
-    static int visited[];
+    static boolean visited[];
+    static int n, m;
+    static int count;
     static ArrayList<Integer> queue;
 
     public static void bfs(){
         queue = new ArrayList<>();
-        queue.add(a);
+
+        queue.add(1);
+        visited[1] = true;
 
         while (!queue.isEmpty()){
             int idx = queue.remove(0);
+
             for (int i=1; i<=n; i++){
-                if (graph[idx][i] && visited[i] == 0){
+                if (graph[idx][i] && !visited[i]){
+                    count ++;
                     queue.add(i);
-                    visited[i] = visited[idx] + 1;
+                    visited[i] = true;
                 }
             }
         }
     }
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         n = Integer.parseInt(br.readLine());
-        graph = new boolean[n+1][n+1];
-        visited = new int[n+1];
-
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        a = Integer.parseInt(st.nextToken());
-        b = Integer.parseInt(st.nextToken());
-
         m = Integer.parseInt(br.readLine());
 
+        graph = new boolean[n+1][n+1];
+        visited = new boolean[n+1];
+
         for (int i=0; i<m; i++){
-            st = new StringTokenizer(br.readLine());
+            StringTokenizer st = new StringTokenizer(br.readLine());
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
@@ -44,11 +47,7 @@ public class boj2644_bfs {
         }
 
         bfs();
-
-        if (visited[b] == 0)
-            System.out.println(-1);
-        else
-            bw.write(String.valueOf(visited[b]));
+        bw.write(String.valueOf(count));
 
         br.close();
         bw.close();

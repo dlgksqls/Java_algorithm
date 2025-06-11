@@ -1,52 +1,41 @@
+package BFS;
+
 import java.util.*;
 import java.io.*;
-public class boj1260 {
+public class boj11724_bfs {
+    static int n, m;
     static boolean graph[][];
-    static boolean visited_dfs[];
-    static boolean visited_bfs[];
+    static boolean visited[];
+    static int answer;
     static ArrayList<Integer> queue;
-    static int n, m, v;
 
-    public static void dfs(int idx){
-        visited_dfs[idx] = true;
-        System.out.print(idx + " ");
-
-        for (int i=0; i<=n; i++){
-            if (!visited_dfs[i] && graph[idx][i])
-                dfs(i);
-        }
-    }
-
-    public static void bfs(){
+    public static void bfs(int index){
         queue = new ArrayList<>();
 
-        queue.add(v);
-        visited_bfs[v] = true;
+        queue.add(index);
+        visited[index] = true;
 
         while(!queue.isEmpty()){
             int idx = queue.remove(0);
-            System.out.print(idx + " ");
 
             for (int i=1; i<=n; i++){
-                if (!visited_bfs[i] && graph[idx][i]){
+                if (graph[idx][i] && !visited[i]){
                     queue.add(i);
-                    visited_bfs[i] = true;
-                    }
+                    visited[i] = true;
+                }
             }
         }
     }
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        v = Integer.parseInt(st.nextToken());
 
         graph = new boolean[n+1][n+1];
-        visited_dfs = new boolean[n+1];
-        visited_bfs = new boolean[n+1];
+        visited = new boolean[n+1];
 
         for (int i=0; i<m; i++){
             st = new StringTokenizer(br.readLine());
@@ -56,10 +45,13 @@ public class boj1260 {
             graph[x][y] = true;
             graph[y][x] = true;
         }
-
-        dfs(v);
-        System.out.println();
-        bfs();
+        for (int i=1; i<=n; i++){
+            if (!visited[i]) {
+                answer++;
+                bfs(i);
+            }
+        }
+        bw.write(String.valueOf(answer));
 
         br.close();
         bw.close();

@@ -1,25 +1,28 @@
+package DFS;
+
 import java.util.*;
 import java.io.*;
-public class boj11725 {
+public class boj2606 {
 
     static int n;
+    static int m;
     static ArrayList<Integer>[] graph;
     static int[] visited;
-    static int[] result;
-
+    static int count = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         n = Integer.parseInt(br.readLine());
+        m = Integer.parseInt(br.readLine());
+
         graph = new ArrayList[n+1];
         visited = new int[n+1];
-        result = new int[n+1];
 
         for (int i=1; i<=n; i++){
             graph[i] = new ArrayList<>();
         }
 
-        for (int i=0; i<n-1; i++){
+        for (int i=0; i<m; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
@@ -28,22 +31,18 @@ public class boj11725 {
             graph[b].add(a);
         }
 
-        for(int i=1; i<=n; i++){
-            if (visited[i] != 1) {
-                dfs(i);
-            }
-        }
-        for(int i=2; i<=n; i++){
-            System.out.println(result[i]);
-        }
+        dfs(1);
+
+        System.out.println(count);
+        br.close();
     }
 
     private static void dfs(int v) {
         visited[v] = 1;
 
-        for (int i : graph[v]){
-            if (visited[i] != 1) {
-                result[i] = v;
+        for (int i : graph[v]) {
+            if (visited[i] != 1){
+                count++;
                 dfs(i);
             }
         }

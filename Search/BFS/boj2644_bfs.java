@@ -1,39 +1,40 @@
-import java.util.*;
+package BFS;
+
 import java.io.*;
-public class boj11724_bfs {
-    static int n, m;
+import java.util.*;
+public class boj2644_bfs {
+    static int n, a, b, m;
     static boolean graph[][];
-    static boolean visited[];
-    static int answer;
+    static int visited[];
     static ArrayList<Integer> queue;
 
-    public static void bfs(int index){
+    public static void bfs(){
         queue = new ArrayList<>();
+        queue.add(a);
 
-        queue.add(index);
-        visited[index] = true;
-
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()){
             int idx = queue.remove(0);
-
             for (int i=1; i<=n; i++){
-                if (graph[idx][i] && !visited[i]){
+                if (graph[idx][i] && visited[i] == 0){
                     queue.add(i);
-                    visited[i] = true;
+                    visited[i] = visited[idx] + 1;
                 }
             }
         }
     }
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-
+        n = Integer.parseInt(br.readLine());
         graph = new boolean[n+1][n+1];
-        visited = new boolean[n+1];
+        visited = new int[n+1];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        a = Integer.parseInt(st.nextToken());
+        b = Integer.parseInt(st.nextToken());
+
+        m = Integer.parseInt(br.readLine());
 
         for (int i=0; i<m; i++){
             st = new StringTokenizer(br.readLine());
@@ -43,13 +44,13 @@ public class boj11724_bfs {
             graph[x][y] = true;
             graph[y][x] = true;
         }
-        for (int i=1; i<=n; i++){
-            if (!visited[i]) {
-                answer++;
-                bfs(i);
-            }
-        }
-        bw.write(String.valueOf(answer));
+
+        bfs();
+
+        if (visited[b] == 0)
+            System.out.println(-1);
+        else
+            bw.write(String.valueOf(visited[b]));
 
         br.close();
         bw.close();

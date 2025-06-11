@@ -1,3 +1,5 @@
+package BFS;
+
 import java.io.*;
 import java.util.*;
 public class boj16173_bfs {

@@ -1,3 +1,5 @@
+package DFS;
+
 import java.util.*;
 import java.io.*;
 public class boj1388 {

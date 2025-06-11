@@ -1,3 +1,5 @@
+package DFS;
+
 import java.util.Scanner;
 
 // n : 3, m : 2 n : 원소 갯수, m : 뽑는 수
