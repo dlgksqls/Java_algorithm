@@ -37,7 +37,7 @@ public class boj11724 {
         for(int i=1; i<=n; i++){
             if (!visited[i]){
                 answer ++;
-//                bfs(i);
+                bfs(i);
                 dfs(i);
             }
         }
