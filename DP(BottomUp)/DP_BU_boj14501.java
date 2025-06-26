@@ -17,7 +17,7 @@ public class DP_BU_boj14501 {
     }
 
     static int n;
-    static List<interview> array = new ArrayList<interview>();
+    static List<interview> array = new ArrayList<>();
     static int[] dp;
 
     public static void main(String[] args) throws IOException {
