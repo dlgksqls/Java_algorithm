@@ -37,7 +37,7 @@ public class boj15486 {
             if (i + interviews.get(i).t > n){
                 dp[i] = dp[i+1];
             }
-            else{
+            else {
                 dp[i] = Math.max(dp[i + interviews.get(i).t] + interviews.get(i).p, dp[i+1]);
             }
         }
@@ -54,8 +54,12 @@ public class boj15486 {
         if (idx >= n) return 0;
         if (dp[idx] != 0) return dp[idx];
 
-        if (idx + interviews.get(idx).t > n) dp[idx] = recursion(idx + 1);
-        else dp[idx] = Math.max(recursion(idx + interviews.get(idx).t) + interviews.get(idx).p, recursion(idx + 1));
+        if (idx + interviews.get(idx).t > n){
+            dp[idx] = recursion(idx + 1);
+        }
+        else{
+            dp[idx] = Math.max(recursion(idx + interviews.get(idx).t) + interviews.get(idx).p, recursion(idx + 1));
+        }
 
         return dp[idx];
     }
