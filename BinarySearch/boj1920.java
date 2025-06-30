@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class boj10815 {
+public class boj1920 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -16,23 +16,24 @@ public class boj10815 {
         for(int i=0; i<n; i++){
             array[i] = Integer.parseInt(st.nextToken());
         }
-
         Arrays.sort(array);
+
         int m = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
         for(int i=0; i<m; i++){
             int findNum = Integer.parseInt(st.nextToken());
+            boolean flag = false;
+
             int start = 0;
             int end = n-1;
-            boolean flag = false;
 
             while(start <= end){
                 int mid = (start + end) / 2;
-                if (findNum == array[mid]) {
+
+                if (findNum == array[mid]){
                     flag = true;
                     break;
                 }
-
                 if (findNum < array[mid]){
                     end = mid - 1;
                 }
@@ -41,8 +42,8 @@ public class boj10815 {
                 }
             }
 
-            if (flag) System.out.print(1 + " ");
-            else System.out.print(0 + " ");
+            if (flag) System.out.println(1);
+            else System.out.println(0);
         }
 
         br.close();
