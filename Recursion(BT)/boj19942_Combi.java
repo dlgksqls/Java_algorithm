@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class boj19942 {
+public class boj19942_Combi {
     static class InGre{
         int dan;
         int ji;
@@ -25,7 +25,7 @@ public class boj19942 {
     static InGre[] ingres;
     static List<Integer> best;
     static List<Integer> list;
-//    static boolean[] visited;
+    static boolean[] visited;
     static int answer = Integer.MAX_VALUE;
     static int mp;
     static int mf;
@@ -37,7 +37,7 @@ public class boj19942 {
 
         n = Integer.parseInt(br.readLine());
         ingres = new InGre[n];
-//        visited = new boolean[n];
+        visited = new boolean[n];
 
         st = new StringTokenizer(br.readLine());
         mp = Integer.parseInt(st.nextToken());
@@ -76,21 +76,26 @@ public class boj19942 {
                 answer = sum;
                 best = new ArrayList<>(list);
             }
+            return;
         }
 
         if (idx == n){
             return;
         }
 
-        list.add(idx + 1);
-        recursion(idx + 1,
-                sum + ingres[idx].price,
-                p + ingres[idx].dan,
-                f + ingres[idx].ji,
-                s + ingres[idx].tan,
-                v + ingres[idx].bi);
-        list.remove(list.size()-1);
-
-        recursion(idx + 1, sum, p, f, s, v);
+        for(int i=idx; i<n; i++){
+            if (!visited[i]){
+                visited[i] = true;
+                list.add(i+1);
+                recursion(i+1,
+                        sum+ingres[i].price,
+                        p+ingres[i].dan,
+                        f+ingres[i].ji,
+                        s+ingres[i].tan,
+                        v + ingres[i].bi);
+                visited[i] = false;
+                list.remove(list.size() - 1);
+            }
+        }
     }
 }
